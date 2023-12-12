@@ -16,7 +16,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   void initState() {
     super.initState();
     Timer(
-      const Duration(seconds: 20),
+      const Duration(seconds: 2),
       () {
         Navigator.pushReplacement(
           context,
