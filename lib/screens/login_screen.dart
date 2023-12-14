@@ -101,7 +101,44 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              MyContainer(child: Image.asset("assets/icons/google.png")),
+              MyContainer(child: Image.asset("assets/icons/facebook.png")),
+              MyContainer(child: Image.asset("assets/icons/twitter.png")),
+            ],
+          )
         ]),
+      ),
+    );
+  }
+}
+
+class MyContainer extends StatelessWidget {
+  final Widget child;
+
+  const MyContainer({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 60,
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(100, 153, 150, 150),
+            blurRadius: 5,
+            spreadRadius: 0.0,
+          ),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: child,
       ),
     );
   }
