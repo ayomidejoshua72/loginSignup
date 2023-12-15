@@ -53,7 +53,7 @@ class SignUpScreen extends StatelessWidget {
           const SizedBox(height: 20),
           const PasswordInput(),
           const SizedBox(height: 20),
-          
+          const TechnicalSkillsDropdown(),
           const SizedBox(height: 30),
           GestureDetector(
             onTap: () {},
@@ -134,3 +134,79 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+
+class TechnicalSkillsDropdown extends StatefulWidget {
+  const TechnicalSkillsDropdown({super.key});
+
+  @override
+  State<TechnicalSkillsDropdown> createState() =>
+      _TechnicalSkillsDropdownState();
+}
+
+class _TechnicalSkillsDropdownState extends State<TechnicalSkillsDropdown> {
+  List<String> techSkills = [
+    "Programming Languages",
+    "Web Development",
+    "Mobile App Development",
+    "Database Management",
+    "Cloud Computing",
+    "DevOps",
+    "Networking",
+    "Cybersecurity",
+    "Data Science and Machine Learning",
+    "Big Data Technologies",
+    "Version Control",
+    "Web Services and APIs",
+    "Operating Systems",
+    "UI/UX Design",
+    "Project Management",
+    "Collaboration Tools",
+    "IoT (Internet of Things)",
+    "Virtualization",
+    "Blockchain",
+    "Automation Scripting",
+  ];
+  String? selectedTechSkill; // Default value
+  double height = 50;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(100, 153, 150, 150),
+            blurRadius: 5,
+            spreadRadius: 0.0,
+          ),
+        ],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: DropdownButtonFormField<String>(
+        value: selectedTechSkill,
+        decoration: const InputDecoration(
+          labelText: "Technical Skills",
+          contentPadding: EdgeInsets.all(10),
+          border: InputBorder.none,
+
+        ),
+        
+        items: techSkills.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+        onChanged: (newValue) {
+          setState(() {
+            selectedTechSkill = newValue;
+            height = 60;
+          });
+        },
+      ),
+    );
+  }
+}
+
