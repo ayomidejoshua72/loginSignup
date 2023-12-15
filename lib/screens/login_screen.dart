@@ -13,10 +13,8 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        padding:const EdgeInsets.all(20),
           children: [
             const Center(
               child: Text(
@@ -121,7 +119,6 @@ class LoginScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
     );
   }
 }
