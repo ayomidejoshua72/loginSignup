@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'signup_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -75,7 +77,12 @@ class LoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 15),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                 Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                );
+              },
               child: Container(
                 height: 50,
                 alignment: Alignment.center,
