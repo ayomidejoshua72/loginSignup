@@ -12,6 +12,7 @@ class SignUpScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        foregroundColor: Colors.black.withOpacity(.2),
       ),
       body: ListView(
         padding: const EdgeInsets.all(30),
@@ -173,6 +174,7 @@ class _TechnicalSkillsDropdownState extends State<TechnicalSkillsDropdown> {
   Widget build(BuildContext context) {
     return Container(
       height: height,
+      // width: 3,
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: const [
@@ -185,10 +187,13 @@ class _TechnicalSkillsDropdownState extends State<TechnicalSkillsDropdown> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: DropdownButtonFormField<String>(
+
+        isDense: true,
+        // itemHeight: 20,
         value: selectedTechSkill,
         decoration: const InputDecoration(
           labelText: "Technical Skills",
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 10),
           border: InputBorder.none,
 
         ),
