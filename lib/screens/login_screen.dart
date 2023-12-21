@@ -45,6 +45,15 @@ class LoginScreen extends StatelessWidget {
             label: "Email",
             typeInput: TextInputType.emailAddress,
             typedEmail: emailController,
+            validate: (value) {
+              if (value == null || value.isEmpty) {
+                return "Email cannot be empty";
+              }
+              if (!value.contains("@") && !value.contains(".")) {
+                return "Enter valid email";
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 15),
           PasswordInput(typedPassword: passwordController),
@@ -53,10 +62,10 @@ class LoginScreen extends StatelessWidget {
             onTap: () {
               String enteredEmail = emailController.text;
               String enteredPassword = passwordController.text;
-              if (enteredEmail.isEmpty || enteredPassword.isEmpty) {
+              if (enteredEmail.isEmpty || enteredPassword.isEmpty || (!enteredEmail.contains(".") || !enteredEmail.contains("@"))) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
-                    content: Text("Please enter both email and password"),
+                    content: Text("Please enter correct email and password"),
                   ),
                 );
               } else {
@@ -232,13 +241,15 @@ class CustomTextField extends StatelessWidget {
   final TextInputType? typeInput;
   final IconButton? suffixIcon;
   final TextEditingController? typedEmail;
+  final String? Function(String? value)? validate;
 
   const CustomTextField(
       {super.key,
       required this.label,
       this.typeInput,
       this.typedEmail,
-      this.suffixIcon});
+      this.suffixIcon,
+      this.validate});
 
   @override
   Widget build(BuildContext context) {
@@ -255,7 +266,7 @@ class CustomTextField extends StatelessWidget {
         ],
         borderRadius: BorderRadius.circular(10),
       ),
-      child: TextField(
+      child: TextFormField(
         controller: typedEmail,
         obscureText: false,
         decoration: InputDecoration(
@@ -264,6 +275,7 @@ class CustomTextField extends StatelessWidget {
           border: InputBorder.none,
         ),
         keyboardType: typeInput,
+        validator: validate,
       ),
     );
   }

@@ -1,4 +1,3 @@
-
 import 'package:authentication_page/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -39,8 +38,19 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          const CustomTextField(
-              label: "Email", typeInput: TextInputType.emailAddress),
+          CustomTextField(
+            label: "Email",
+            typeInput: TextInputType.emailAddress,
+            validate: (value) {
+              if (value == null || value.isEmpty) {
+                return "Email cannot be empty";
+              }
+              if (!value.contains("@") && !value.contains(".")) {
+                return "Enter valid email";
+              }
+              return null;
+            },
+          ),
           const SizedBox(height: 20),
           const CustomTextField(
             label: "Full Name",
@@ -187,7 +197,6 @@ class _TechnicalSkillsDropdownState extends State<TechnicalSkillsDropdown> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: DropdownButtonFormField<String>(
-
         isDense: true,
         // itemHeight: 20,
         value: selectedTechSkill,
@@ -195,9 +204,8 @@ class _TechnicalSkillsDropdownState extends State<TechnicalSkillsDropdown> {
           labelText: "Technical Skills",
           contentPadding: EdgeInsets.symmetric(horizontal: 4, vertical: 10),
           border: InputBorder.none,
-
         ),
-        
+
         items: techSkills.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
@@ -214,4 +222,3 @@ class _TechnicalSkillsDropdownState extends State<TechnicalSkillsDropdown> {
     );
   }
 }
-
